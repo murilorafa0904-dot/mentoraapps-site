@@ -138,32 +138,10 @@ footer{border-top:1px solid var(--line);padding:34px 0 48px;color:var(--soft);fo
 footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
 footer a{color:var(--soft)}
 
-/* ---------- Página de livro abrindo (cada quadro ao aparecer) ---------- */
-.rise{position:relative;opacity:0;transform-origin:left center;
-  transform:perspective(1800px) rotateY(-78deg);
-  transition:transform 1.15s cubic-bezier(.2,.75,.25,1),opacity .55s ease;transition-delay:var(--d,0s)}
-.rise::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:3;
-  background:linear-gradient(90deg,rgba(0,0,0,.6) 0%,rgba(0,0,0,.25) 35%,rgba(255,236,190,.12) 70%,transparent 100%);
-  opacity:1;transition:opacity 1.15s ease;transition-delay:var(--d,0s)}
-.rise.on{opacity:1;transform:perspective(1800px) rotateY(0)}
-.rise.on::after{opacity:0}
-
-/* ---------- Virada de página ao trocar de seção pelo menu ---------- */
-.flip{position:fixed;inset:0;z-index:50;pointer-events:none;perspective:2200px}
-.flip .leaf{position:absolute;inset:0;transform-origin:left center;backface-visibility:hidden;
-  background:
-    linear-gradient(90deg,rgba(0,0,0,.45) 0,rgba(0,0,0,0) 6%),
-    radial-gradient(120% 100% at 0% 50%,#5a4029 0%,#36251a 55%,#1f150c 100%);
-  box-shadow:inset -1px 0 0 rgba(214,173,98,.5),-30px 0 60px rgba(0,0,0,.6);
-  display:grid;place-items:center;animation:turn 1s cubic-bezier(.55,.05,.35,1) forwards}
-.flip .leaf img{width:120px;opacity:.85}
-.flip .leaf::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent 60%,rgba(0,0,0,.5));animation:shade 1s ease forwards}
-@keyframes turn{0%{transform:rotateY(0)}100%{transform:rotateY(-180deg)}}
-@keyframes shade{0%{opacity:0}50%{opacity:1}100%{opacity:0}}
-.flip.in .leaf{animation:turnIn .5s cubic-bezier(.45,0,.55,1) forwards}
-@keyframes turnIn{0%{transform:rotateY(180deg)}100%{transform:rotateY(0)}}
-
-@media (prefers-reduced-motion:reduce){.rise,.rise::after{opacity:1;transform:none;transition:none}.rise::after{opacity:0}html{scroll-behavior:auto}.flip{display:none}}
+/* ---------- Animação de entrada ---------- */
+.rise{opacity:0;transform:translateY(24px);transition:opacity .8s ease,transform .8s ease;transition-delay:var(--d,0s)}
+.rise.on{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.rise{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
 </style>
 </head>
 <body>
@@ -285,38 +263,17 @@ footer a{color:var(--soft)}
 (function(){
   var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* Cada quadro abre como uma página; os vizinhos abrem um depois do outro. */
+  /* Cada quadro aparece suavemente; os vizinhos, um depois do outro. */
   var els=document.querySelectorAll('.rise');
   els.forEach(function(e){
     var sibs=[].filter.call(e.parentNode.children,function(c){return c.classList.contains('rise')});
-    e.style.setProperty('--d',(sibs.indexOf(e)*0.14)+'s');
+    e.style.setProperty('--d',(sibs.indexOf(e)*0.1)+'s');
   });
   if(reduce||!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('on')});}
   else{
     var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}})},{threshold:.15});
     els.forEach(function(e){io.observe(e)});
   }
-
-  /* Ao trocar de seção pelo menu, uma página vira por cima da tela. */
-  var busy=false;
-  document.querySelectorAll('a[href^="#"]').forEach(function(a){
-    a.addEventListener('click',function(ev){
-      var t=document.querySelector(a.getAttribute('href'));
-      if(!t||reduce||busy)return;
-      ev.preventDefault();busy=true;
-      var f=document.createElement('div');f.className='flip in';
-      f.innerHTML='<div class="leaf"><img src="assets/emblema.png" alt=""></div>';
-      document.body.appendChild(f);
-      setTimeout(function(){
-        document.documentElement.style.scrollBehavior='auto';
-        t.scrollIntoView();
-        history.replaceState(null,'',a.getAttribute('href'));
-        f.className='flip';
-        var leaf=f.firstChild;leaf.style.animation='none';void leaf.offsetWidth;leaf.style.animation='';
-        setTimeout(function(){f.remove();busy=false;document.documentElement.style.scrollBehavior='';},1050);
-      },520);
-    });
-  });
 })();
 </script>
 </body>
