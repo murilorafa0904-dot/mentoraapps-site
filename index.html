@@ -118,7 +118,9 @@ section{padding:90px 0}
 .phone.b{right:4%;top:60px;transform:rotate(6deg)}
 .links{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
 .links a.txt{font-weight:600;text-decoration:none;border-bottom:1px solid var(--frame)}
-@media (max-width:860px){.feature{grid-template-columns:1fr;padding:32px 24px}.phones{height:440px}.phone{width:190px}}
+.feature.alt{margin-top:40px;grid-template-columns:.9fr 1.1fr;background:radial-gradient(120% 140% at 100% 0%,#4b4a2a 0%,#2d2c19 50%,#1b1a0e 100%)}
+.ig{width:22px;height:22px;flex:none}
+@media (max-width:860px){.feature,.feature.alt{grid-template-columns:1fr;padding:32px 24px}.feature.alt .phones{order:2}.phones{height:440px}.phone{width:190px}}
 @media (max-width:420px){.phones{height:380px}.phone{width:160px}.phone.a{left:0}.phone.b{right:0}}
 
 /* ---------- Em breve ---------- */
@@ -153,6 +155,7 @@ footer a{color:var(--soft)}
       <a href="#pilares">Propósito</a>
       <a href="#apps">Apps</a>
       <a href="#futuro">Em breve</a>
+      <a href="https://www.instagram.com/mentoraapps/" target="_blank" rel="noopener">Instagram</a>
       <a class="btn gold sm" href="#contato">Contato</a>
     </div>
   </div>
@@ -195,7 +198,8 @@ footer a{color:var(--soft)}
       <div class="head rise">
         <div class="eyebrow">nossos apps</div>
         <div class="orn"><span></span>✦<span></span></div>
-        <h2>Conheça o <em>Minha Leitura</em></h2>
+        <h2>Conheça nossos <em>aplicativos</em></h2>
+        <p>Dois apps para quem leva a sério a leitura e os estudos, com lançamento em breve na App Store.</p>
       </div>
       <div class="feature rise">
         <div>
@@ -220,6 +224,30 @@ footer a{color:var(--soft)}
           <div class="phone b"><img src="assets/tela-resumo.jpg" alt=""></div>
         </div>
       </div>
+
+      <div class="feature alt rise">
+        <div class="phones" aria-hidden="true">
+          <div class="phone a"><img src="assets/me-tela-hoje.jpg" alt=""></div>
+          <div class="phone b"><img src="assets/me-tela-desempenho.jpg" alt=""></div>
+        </div>
+        <div>
+          <div class="app-id">
+            <img src="assets/meu-estudo.png" alt="Ícone do Meu Estudo">
+            <div><h3>Meu Estudo: Plano e Cronômetro</h3><span class="badge">Lançamento em breve na App Store</span></div>
+          </div>
+          <p>O cronograma de estudos com cronômetro, para escola, vestibular e concursos. Monte o plano da semana, estude com o tempo contando e veja se está em dia com o que planejou.</p>
+          <ul class="list">
+            <li>Plano semanal por matéria, do professor, do cursinho ou feito por você</li>
+            <li>Cronômetro em tela cheia para cada matéria, com pausas que não entram na conta</li>
+            <li>Planejado × estudado na semana, com aviso de quando você está atrasado</li>
+            <li>Com o Meu Estudo Plus: controle mensal, questões e acertos, revisões programadas e contagem regressiva para a prova</li>
+          </ul>
+          <div class="links">
+            <a class="btn gold sm" href="meu-estudo/suporte.html">Suporte</a>
+            <a class="txt" href="meu-estudo/privacidade.html">Política de privacidade</a>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -232,7 +260,6 @@ footer a{color:var(--soft)}
         <p>Novos apps estão a caminho, com o mesmo cuidado e a mesma filosofia.</p>
       </div>
       <div class="soon">
-        <article class="card c-olive rise"><div class="ico">⏱️</div><h3>Foco nos estudos</h3><p>Organize sessões de estudo e acompanhe o seu tempo de dedicação.</p><span class="tag">em desenvolvimento</span></article>
         <article class="card c-blue rise"><div class="ico">🎯</div><h3>Metas e hábitos</h3><p>Defina objetivos e construa a sua rotina, um dia de cada vez.</p><span class="tag">em breve</span></article>
         <article class="card c-wine rise"><div class="ico">💡</div><h3>Aprender tecnologia</h3><p>Conteúdos práticos para entender o mundo digital.</p><span class="tag">em breve</span></article>
       </div>
@@ -245,8 +272,11 @@ footer a{color:var(--soft)}
         <div class="eyebrow">fale conosco</div>
         <div class="orn"><span></span>✦<span></span></div>
         <h2>Uma ideia, dúvida ou <em>sugestão</em>?</h2>
-        <p>Queremos ouvir você. Envie a sua mensagem pela nossa página de suporte.</p>
-        <a class="btn gold" href="https://murilorafa0904-dot.github.io/minha-leitura-privacidade/suporte.html">Entrar em contato</a>
+        <p>Queremos ouvir você. Fale com a gente pelo Instagram ou envie a sua mensagem pela nossa página de suporte. Siga também para acompanhar os lançamentos.</p>
+        <div class="cta">
+          <a class="btn gold" href="https://www.instagram.com/mentoraapps/" target="_blank" rel="noopener"><svg class="ig" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.3" cy="6.7" r="1.3" fill="currentColor"/></svg>@mentoraapps no Instagram</a>
+          <a class="btn ghost" href="https://murilorafa0904-dot.github.io/minha-leitura-privacidade/suporte.html">Página de suporte</a>
+        </div>
       </div>
     </div>
   </section>
@@ -255,7 +285,7 @@ footer a{color:var(--soft)}
 <footer>
   <div class="wrap">
     <span>© 2026 Mentora Apps. Todos os direitos reservados.</span>
-    <a href="https://murilorafa0904-dot.github.io/minha-leitura-privacidade/">Privacidade</a>
+    <span class="flinks"><a href="https://www.instagram.com/mentoraapps/" target="_blank" rel="noopener">Instagram @mentoraapps</a> · <a href="https://murilorafa0904-dot.github.io/minha-leitura-privacidade/">Privacidade do Minha Leitura</a> · <a href="meu-estudo/privacidade.html">Privacidade do Meu Estudo</a></span>
   </div>
 </footer>
 
